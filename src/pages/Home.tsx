@@ -16,10 +16,10 @@ const Home = () => {
   ];
 
   const featuredProducts = [
-    { id: 1, name: "Boys Blazer", price: 89.99, image: "🧥", rating: 4.5 },
-    { id: 2, name: "Girls Skirt", price: 34.99, image: "👗", rating: 4.8 },
-    { id: 3, name: "Sports T-Shirt", price: 24.99, image: "👕", rating: 4.6 },
-    { id: 4, name: "School Backpack", price: 49.99, image: "🎒", rating: 4.7 },
+    { id: 1, name: "Boys Blazer", price: 2499, image: "🧥", rating: 4.5 },
+    { id: 2, name: "Girls Skirt", price: 1299, image: "👗", rating: 4.8 },
+    { id: 3, name: "Sports T-Shirt", price: 799, image: "👕", rating: 4.6 },
+    { id: 4, name: "School Backpack", price: 1499, image: "🎒", rating: 4.7 },
   ];
 
   const features = [
@@ -52,13 +52,6 @@ const Home = () => {
                   className="text-lg"
                 >
                   Shop Now
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="text-lg bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary"
-                >
-                  View Catalog
                 </Button>
               </div>
             </div>
@@ -109,7 +102,7 @@ const Home = () => {
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="flex justify-between items-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold">Featured Products</h2>
+              <h2 className="text-3xl md:text-4xl font-bold">Prize</h2>
               <Button variant="outline" onClick={() => navigate("/products")}>
                 View All
               </Button>
@@ -127,7 +120,7 @@ const Home = () => {
                     </div>
                     <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
                     <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-primary">${product.price}</span>
+                      <span className="text-2xl font-bold text-primary">₹{product.price}</span>
                       <div className="flex items-center gap-1 text-sm text-muted-foreground">
                         <Star className="h-4 w-4 fill-accent text-accent" />
                         {product.rating}

@@ -9,8 +9,8 @@ import Footer from "@/components/Footer";
 const Cart = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([
-    { id: 1, name: "Boys Blazer", price: 89.99, image: "🧥", quantity: 1, size: "M" },
-    { id: 2, name: "Girls Skirt", price: 34.99, image: "👗", quantity: 2, size: "S" },
+    { id: 1, name: "Boys Blazer", price: 2499, image: "🧥", quantity: 1, size: "M" },
+    { id: 2, name: "Girls Skirt", price: 1299, image: "👗", quantity: 2, size: "S" },
   ]);
 
   const updateQuantity = (id: number, delta: number) => {
@@ -28,7 +28,7 @@ const Cart = () => {
   };
 
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const shipping = 5.99;
+  const shipping = 99;
   const total = subtotal + shipping;
 
   return (
@@ -93,7 +93,7 @@ const Cart = () => {
                             </Button>
                           </div>
                           <span className="text-xl font-bold text-primary">
-                            ${(item.price * item.quantity).toFixed(2)}
+                            ₹{item.price * item.quantity}
                           </span>
                         </div>
                       </div>
@@ -112,15 +112,15 @@ const Cart = () => {
                   <div className="space-y-3 mb-6">
                     <div className="flex justify-between text-muted-foreground">
                       <span>Subtotal</span>
-                      <span>${subtotal.toFixed(2)}</span>
+                      <span>₹{subtotal}</span>
                     </div>
                     <div className="flex justify-between text-muted-foreground">
                       <span>Shipping</span>
-                      <span>${shipping.toFixed(2)}</span>
+                      <span>₹{shipping}</span>
                     </div>
                     <div className="border-t pt-3 flex justify-between text-lg font-bold">
                       <span>Total</span>
-                      <span className="text-primary">${total.toFixed(2)}</span>
+                      <span className="text-primary">₹{total}</span>
                     </div>
                   </div>
 

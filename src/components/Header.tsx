@@ -14,9 +14,9 @@ const Header = () => {
         <div className="flex items-center justify-between gap-4">
           <Link to="/" className="flex items-center gap-2">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-lg">
-              SW
+              AS
             </div>
-            <span className="hidden sm:inline-block text-xl font-bold text-foreground">SchoolWear Pro</span>
+            <span className="hidden sm:inline-block text-xl font-bold text-foreground">Aaryan's School Wear</span>
           </Link>
 
           <div className="hidden md:flex flex-1 max-w-md mx-8">

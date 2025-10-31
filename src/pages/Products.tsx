@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Star, Search } from "lucide-react";
+import { Star } from "lucide-react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -11,24 +10,22 @@ import Footer from "@/components/Footer";
 const Products = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get("category") || "all");
   const [sortBy, setSortBy] = useState("featured");
 
   const products = [
-    { id: 1, name: "Boys Blazer", price: 89.99, image: "🧥", rating: 4.5, category: "boys" },
-    { id: 2, name: "Girls Skirt", price: 34.99, image: "👗", rating: 4.8, category: "girls" },
-    { id: 3, name: "Sports T-Shirt", price: 24.99, image: "👕", rating: 4.6, category: "sportswear" },
-    { id: 4, name: "School Backpack", price: 49.99, image: "🎒", rating: 4.7, category: "accessories" },
-    { id: 5, name: "Boys Trousers", price: 39.99, image: "👖", rating: 4.4, category: "boys" },
-    { id: 6, name: "Girls Blouse", price: 29.99, image: "👚", rating: 4.6, category: "girls" },
-    { id: 7, name: "Sports Shorts", price: 19.99, image: "🩳", rating: 4.5, category: "sportswear" },
-    { id: 8, name: "School Tie", price: 14.99, image: "👔", rating: 4.3, category: "accessories" },
+    { id: 1, name: "Boys Blazer", price: 2499, image: "🧥", rating: 4.5, category: "boys" },
+    { id: 2, name: "Girls Skirt", price: 1299, image: "👗", rating: 4.8, category: "girls" },
+    { id: 3, name: "Sports T-Shirt", price: 799, image: "👕", rating: 4.6, category: "sportswear" },
+    { id: 4, name: "School Backpack", price: 1499, image: "🎒", rating: 4.7, category: "accessories" },
+    { id: 5, name: "Boys Trousers", price: 1199, image: "👖", rating: 4.4, category: "boys" },
+    { id: 6, name: "Girls Top", price: 899, image: "👚", rating: 4.6, category: "girls" },
+    { id: 7, name: "Sports Shorts", price: 599, image: "🩳", rating: 4.5, category: "sportswear" },
+    { id: 8, name: "School Tie", price: 399, image: "👔", rating: 4.3, category: "accessories" },
   ];
 
   const filteredProducts = products
     .filter(p => selectedCategory === "all" || p.category === selectedCategory)
-    .filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()))
     .sort((a, b) => {
       if (sortBy === "price-low") return a.price - b.price;
       if (sortBy === "price-high") return b.price - a.price;
@@ -45,17 +42,7 @@ const Products = () => {
 
         {/* Filters */}
         <div className="bg-card border rounded-lg p-6 mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search products..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
-              />
-            </div>
-            
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Select value={selectedCategory} onValueChange={setSelectedCategory}>
               <SelectTrigger>
                 <SelectValue placeholder="Category" />
@@ -74,7 +61,7 @@ const Products = () => {
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="featured">Featured</SelectItem>
+                <SelectItem value="featured">Prize</SelectItem>
                 <SelectItem value="price-low">Price: Low to High</SelectItem>
                 <SelectItem value="price-high">Price: High to Low</SelectItem>
                 <SelectItem value="rating">Highest Rated</SelectItem>
@@ -97,7 +84,7 @@ const Products = () => {
                 </div>
                 <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl font-bold text-primary">${product.price}</span>
+                  <span className="text-2xl font-bold text-primary">₹{product.price}</span>
                   <div className="flex items-center gap-1 text-sm text-muted-foreground">
                     <Star className="h-4 w-4 fill-accent text-accent" />
                     {product.rating}

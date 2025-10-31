@@ -9,9 +9,9 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-foreground text-primary font-bold text-lg">
-                SW
+                AS
               </div>
-              <span className="text-lg font-bold">SchoolWear Pro</span>
+              <span className="text-lg font-bold">Aaryan's School Wear</span>
             </div>
             <p className="text-sm opacity-90">
               Quality school uniforms and accessories for students. Trusted by schools nationwide.
@@ -69,7 +69,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-sm opacity-90">
-          <p>&copy; 2024 SchoolWear Pro. All rights reserved.</p>
+          <p>&copy; 2024 Aaryan's School Wear. All rights reserved.</p>
         </div>
       </div>
     </footer>

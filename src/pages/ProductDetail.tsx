@@ -17,7 +17,7 @@ const ProductDetail = () => {
   const product = {
     id: Number(id),
     name: "Boys School Blazer",
-    price: 89.99,
+    price: 2499,
     image: "🧥",
     rating: 4.5,
     reviews: 128,
@@ -33,9 +33,9 @@ const ProductDetail = () => {
   };
 
   const relatedProducts = [
-    { id: 5, name: "Boys Trousers", price: 39.99, image: "👖", rating: 4.4 },
-    { id: 8, name: "School Tie", price: 14.99, image: "👔", rating: 4.3 },
-    { id: 3, name: "Sports T-Shirt", price: 24.99, image: "👕", rating: 4.6 },
+    { id: 5, name: "Boys Trousers", price: 1199, image: "👖", rating: 4.4 },
+    { id: 8, name: "School Tie", price: 399, image: "👔", rating: 4.3 },
+    { id: 3, name: "Sports T-Shirt", price: 799, image: "👕", rating: 4.6 },
   ];
 
   const handleAddToCart = () => {
@@ -83,7 +83,7 @@ const ProductDetail = () => {
               </div>
             </div>
 
-            <div className="text-4xl font-bold text-primary mb-6">${product.price}</div>
+            <div className="text-4xl font-bold text-primary mb-6">₹{product.price}</div>
 
             <p className="text-muted-foreground mb-6">{product.description}</p>
 
@@ -166,7 +166,7 @@ const ProductDetail = () => {
                   </div>
                   <h3 className="font-semibold text-lg mb-2">{relatedProduct.name}</h3>
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-primary">${relatedProduct.price}</span>
+                    <span className="text-2xl font-bold text-primary">₹{relatedProduct.price}</span>
                     <div className="flex items-center gap-1 text-sm text-muted-foreground">
                       <Star className="h-4 w-4 fill-accent text-accent" />
                       {relatedProduct.rating}
