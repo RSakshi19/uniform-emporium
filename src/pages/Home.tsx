@@ -3,16 +3,19 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ShoppingBag, Truck, Shield, Star } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import boysUniform from "@/assets/boys-uniform.jpg";
+import girlsUniform from "@/assets/girls-uniform.jpg";
+import boysSports from "@/assets/boys-sports.jpg";
+import girlsSports from "@/assets/girls-sports.jpg";
 
 const Home = () => {
   const navigate = useNavigate();
 
   const categories = [
-    { name: "Boys Uniform", image: "👔", color: "bg-blue-100", category: "boys" },
-    { name: "Girls Uniform", image: "👗", color: "bg-pink-100", category: "girls" },
-    { name: "Sportswear", image: "⚽", color: "bg-green-100", category: "sportswear" },
-    { name: "Accessories", image: "🎒", color: "bg-yellow-100", category: "accessories" },
+    { name: "Boys Uniform", image: boysUniform, category: "boys" },
+    { name: "Girls Uniform", image: girlsUniform, category: "girls" },
+    { name: "Boys Sports", image: boysSports, category: "sportswear" },
+    { name: "Girls Sports", image: girlsSports, category: "girls-sports" },
   ];
 
   const featuredProducts = [
@@ -76,21 +79,33 @@ const Home = () => {
         </section>
 
         {/* Categories */}
-        <section className="py-16">
+        <section className="py-20 bg-gradient-to-b from-background to-primary/5">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Shop by Category</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <h2 className="text-5xl font-bold text-center mb-4 animate-fade-in bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Shop by Category
+            </h2>
+            <p className="text-center text-muted-foreground mb-12 text-lg">Find the perfect uniform for your child</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {categories.map((category, index) => (
                 <Card
                   key={index}
-                  className="cursor-pointer hover:shadow-lg transition-all hover:scale-105 animate-scale-in"
+                  className="cursor-pointer hover:shadow-2xl transition-all hover:-translate-y-2 animate-scale-in border-4 border-primary/20 hover:border-primary rounded-3xl overflow-hidden hover-lift group"
                   onClick={() => navigate(`/products?category=${category.category}`)}
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <CardContent className="flex flex-col items-center justify-center p-8 h-48">
-                    <div className={`text-6xl mb-4 ${category.color} rounded-full p-4`}>
-                      {category.image}
+                  <CardContent className="p-0">
+                    <div className="aspect-[4/3] overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10">
+                      <img 
+                        src={category.image} 
+                        alt={category.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
                     </div>
-                    <h3 className="font-semibold text-lg text-center">{category.name}</h3>
+                    <div className="p-6 bg-gradient-to-br from-primary/10 to-accent/5">
+                      <h3 className="text-2xl font-bold text-center group-hover:text-primary transition-colors animate-bounce-gentle">
+                        {category.name}
+                      </h3>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
@@ -98,64 +113,42 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Featured Products */}
-        <section className="py-16 bg-muted/30">
+        {/* Prize Section */}
+        <section className="py-20 bg-gradient-to-br from-primary/5 via-background to-accent/5">
           <div className="container mx-auto px-4">
-            <div className="flex justify-between items-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold">Prize</h2>
-              <Button variant="outline" onClick={() => navigate("/products")}>
-                View All
-              </Button>
+            <div className="text-center mb-12">
+              <h2 className="text-5xl font-bold mb-4 animate-fade-in bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                Prize
+              </h2>
+              <p className="text-muted-foreground text-lg">Fixed pricing for all uniforms</p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {featuredProducts.map((product) => (
-                <Card
-                  key={product.id}
-                  className="cursor-pointer hover:shadow-lg transition-shadow"
-                  onClick={() => navigate(`/product/${product.id}`)}
-                >
-                  <CardContent className="p-6">
-                    <div className="text-8xl mb-4 text-center bg-muted rounded-lg py-8">
-                      {product.image}
+            <div className="max-w-4xl mx-auto">
+              <Card className="border-4 border-primary/20 rounded-3xl shadow-2xl hover-lift bg-gradient-to-br from-card to-primary/5">
+                <CardContent className="p-12">
+                  <div className="text-center space-y-6">
+                    <div className="inline-block p-4 bg-primary/10 rounded-2xl animate-bounce-gentle">
+                      <ShoppingBag className="h-16 w-16 text-primary" />
                     </div>
-                    <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
-                    <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-primary">₹{product.price}</span>
-                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                        <Star className="h-4 w-4 fill-accent text-accent" />
-                        {product.rating}
-                      </div>
+                    <h3 className="text-4xl font-bold text-primary">Fixed Price</h3>
+                    <p className="text-2xl text-muted-foreground">All school uniforms and sportswear</p>
+                    <div className="text-6xl font-bold text-primary animate-pulse">
+                      ₹899
                     </div>
-                    <Button className="w-full mt-4" size="sm">
-                      Add to Cart
+                    <p className="text-lg text-muted-foreground">Same great quality, same great price!</p>
+                    <Button 
+                      size="lg" 
+                      className="text-xl px-12 py-6 rounded-2xl shadow-lg hover-lift font-bold mt-4"
+                      onClick={() => navigate("/products")}
+                    >
+                      Shop Now
                     </Button>
-                  </CardContent>
-                </Card>
-              ))}
+                  </div>
+                </CardContent>
+              </Card>
             </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 bg-accent text-accent-foreground">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Get Started?</h2>
-            <p className="text-xl mb-8 opacity-90">
-              Browse our complete collection and find the perfect uniform for your school.
-            </p>
-            <Button
-              size="lg"
-              variant="secondary"
-              onClick={() => navigate("/products")}
-              className="text-lg"
-            >
-              Shop All Products
-            </Button>
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 };

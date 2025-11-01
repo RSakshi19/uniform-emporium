@@ -6,7 +6,10 @@ import { Star, ShoppingCart, Heart, Minus, Plus } from "lucide-react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import boysUniform from "@/assets/boys-uniform.jpg";
+import girlsUniform from "@/assets/girls-uniform.jpg";
+import boysSports from "@/assets/boys-sports.jpg";
+import girlsSports from "@/assets/girls-sports.jpg";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -17,8 +20,8 @@ const ProductDetail = () => {
   const product = {
     id: Number(id),
     name: "Boys School Blazer",
-    price: 2499,
-    image: "🧥",
+    price: 899,
+    image: boysUniform,
     rating: 4.5,
     reviews: 128,
     description: "Premium quality school blazer made from durable fabric. Perfect fit and comfort for daily school wear. Features reinforced stitching and traditional styling.",
@@ -33,9 +36,9 @@ const ProductDetail = () => {
   };
 
   const relatedProducts = [
-    { id: 5, name: "Boys Trousers", price: 1199, image: "👖", rating: 4.4 },
-    { id: 8, name: "School Tie", price: 399, image: "👔", rating: 4.3 },
-    { id: 3, name: "Sports T-Shirt", price: 799, image: "👕", rating: 4.6 },
+    { id: 5, name: "Boys Trousers", price: 899, image: boysUniform, rating: 4.4 },
+    { id: 8, name: "Girls Skirt", price: 899, image: girlsUniform, rating: 4.3 },
+    { id: 3, name: "Sports T-Shirt", price: 899, image: boysSports, rating: 4.6 },
   ];
 
   const handleAddToCart = () => {
@@ -54,14 +57,16 @@ const ProductDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Product Image */}
           <div className="animate-fade-in">
-            <div className="text-[200px] text-center bg-muted rounded-lg py-16 mb-4">
-              {product.image}
+            <div className="aspect-square bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl overflow-hidden mb-4 border-4 border-primary/20">
+              <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
             </div>
           </div>
 
           {/* Product Info */}
           <div className="animate-fade-in">
-            <h1 className="text-3xl md:text-4xl font-bold mb-4">{product.name}</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              {product.name}
+            </h1>
             
             <div className="flex items-center gap-4 mb-6">
               <div className="flex items-center gap-2">
@@ -83,7 +88,7 @@ const ProductDetail = () => {
               </div>
             </div>
 
-            <div className="text-4xl font-bold text-primary mb-6">₹{product.price}</div>
+            <div className="text-5xl font-bold text-primary mb-6 animate-pulse">₹{product.price}</div>
 
             <p className="text-muted-foreground mb-6">{product.description}</p>
 
@@ -127,12 +132,12 @@ const ProductDetail = () => {
             </div>
 
             <div className="flex gap-4 mb-8">
-              <Button size="lg" className="flex-1" onClick={handleAddToCart}>
-                <ShoppingCart className="mr-2 h-5 w-5" />
+              <Button size="lg" className="flex-1 text-xl rounded-2xl shadow-lg hover-lift font-bold h-16" onClick={handleAddToCart}>
+                <ShoppingCart className="mr-2 h-6 w-6" />
                 Add to Cart
               </Button>
-              <Button size="lg" variant="outline">
-                <Heart className="h-5 w-5" />
+              <Button size="lg" variant="outline" className="rounded-2xl border-3 h-16 w-16">
+                <Heart className="h-6 w-6" />
               </Button>
             </div>
 
@@ -152,24 +157,28 @@ const ProductDetail = () => {
 
         {/* Related Products */}
         <section>
-          <h2 className="text-2xl md:text-3xl font-bold mb-8">Related Products</h2>
+          <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            Related Products
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {relatedProducts.map((relatedProduct) => (
               <Card
                 key={relatedProduct.id}
-                className="cursor-pointer hover:shadow-lg transition-shadow"
+                className="cursor-pointer hover:shadow-2xl transition-all hover:-translate-y-2 border-4 border-primary/20 hover:border-primary rounded-3xl overflow-hidden hover-lift"
                 onClick={() => navigate(`/product/${relatedProduct.id}`)}
               >
-                <CardContent className="p-6">
-                  <div className="text-8xl mb-4 text-center bg-muted rounded-lg py-8">
-                    {relatedProduct.image}
+                <CardContent className="p-0">
+                  <div className="aspect-square bg-gradient-to-br from-primary/10 to-accent/10">
+                    <img src={relatedProduct.image} alt={relatedProduct.name} className="w-full h-full object-cover" />
                   </div>
-                  <h3 className="font-semibold text-lg mb-2">{relatedProduct.name}</h3>
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-primary">₹{relatedProduct.price}</span>
-                    <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                      <Star className="h-4 w-4 fill-accent text-accent" />
-                      {relatedProduct.rating}
+                  <div className="p-6 bg-gradient-to-br from-primary/5 to-accent/5">
+                    <h3 className="font-semibold text-xl mb-2">{relatedProduct.name}</h3>
+                    <div className="flex items-center justify-between">
+                      <span className="text-2xl font-bold text-primary">₹{relatedProduct.price}</span>
+                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                        <Star className="h-4 w-4 fill-accent text-accent" />
+                        {relatedProduct.rating}
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -178,8 +187,6 @@ const ProductDetail = () => {
           </div>
         </section>
       </main>
-
-      <Footer />
     </div>
   );
 };
